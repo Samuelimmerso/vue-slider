@@ -57,8 +57,9 @@
 
 			<!-- THUMB -->
 			<div class="thumbs-container col-2">
-				<div class="my-carousel-thumbs" id="thumbs-container" v-for="(slide,index) of slides">
-					<div class="col thumb" :class="index==activeImage ? 'active' : ''">
+				<div class="my-carousel-thumbs" id="thumbs-container" v-for="(slide,index) of slides"
+					data-index="index">
+					<div class="col thumb" :class="index==activeImage ? 'active' : ''" @click="switchSlide(index)">
 						<img :src="slide.image" class="img">
 					</div>
 				</div>
@@ -78,7 +79,8 @@
 				<i class="fa-solid fa-repeat"></i>
 			</button>
 
-			<button class="btn btn-outline-dark" id="stop-autoplay">
+			<button class="btn btn-outline-dark" id="stop-autoplay"
+				@click="(!autoplayInterval) ? 'autoplay()' : 'stopautoplay()'">
 				<i class="fa-solid fa-stop"></i>
 			</button>
 

@@ -32,7 +32,11 @@ const app = Vue.createApp({
             ],
 
             // * SETTO IL "CONTATORE" DELL'IMMAGINE ATTIVA
-            activeImage: 0
+            activeImage: 0,
+
+            autoplayInterval: false,
+
+
         }
 
     },
@@ -52,7 +56,7 @@ const app = Vue.createApp({
             } else {
                 this.activeImage = 0;
             }
-            console.log(this.activeImage);
+
         },
 
         backSlide() {
@@ -61,8 +65,24 @@ const app = Vue.createApp({
             } else {
                 this.activeImage = 4;
             }
-            console.log(this.activeImage);
+
+        },
+
+        switchSlide(index) {
+            this.activeImage = index;
+        },
+
+        autoplay() {
+            this.autoplayInterval = setInterval(this.nextSlide, 2000);
+            this.autoplayInterval = true;
+        },
+
+        stopautoplay() {
+            clearInterval(this.autoplayInterval);
         }
+
+
+
     }
 });
 
