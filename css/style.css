@@ -2,6 +2,8 @@
 	border: 3px dashed red;
 } */
 
+
+
 img {
 	width: 100%;
 	height: 100%;
@@ -26,15 +28,16 @@ img {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 80vh;
 }
 
 .my-carousel-main {
-	height: 80vh;
+	height: 100%;
 	width: 60vw;
-	margin-bottom: 15px;
 }
 
 .slide {
+	height: 100%;
 	position: relative;
 }
 
@@ -57,18 +60,25 @@ img {
 	border: 1px solid black;
 }
 
-.my-carousel-thumbs {
-	flex-direction: column;
-	flex-wrap: nowrap;
-	height: 100%;
-}
-
 .thumb {
 	width: 20vw;
 	height: 16vh;
 	cursor: pointer;
 	border-top: 1px solid black;
 	border-right: 1px solid black;
+	height: calc(100%/5);
+}
+
+.my-carousel-thumbs {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+
+.thumbs.container {
+	height: 80vh;
 }
 
 .thumb:last-child {
@@ -87,4 +97,18 @@ img {
 .controls span {
 	border: 10px solid white;
 	cursor: pointer;
+}
+
+.img {
+	height: calc(80vh/5);
+}
+
+
+
+.thumb.active {
+	border: 3px cornflowerblue solid;
+}
+
+.slide.active {
+	display: inline-block;
 }

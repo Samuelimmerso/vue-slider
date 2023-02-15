@@ -28,98 +28,49 @@
 
 	<!-- MAIN JS -->
 	<script type="text/javascript" src="./js/main.js" defer></script>
+
+	<!-- vue -->
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
 </head>
 
 <body>
 
-	<div class="my-carousel-container">
-		<div class="my-carousel">
-			<div class="my-carousel-main" id="slides-container">
+	<div class="my-carousel-container" id="root">
 
-				<!-- <div class="slide active">
-					<img src="./img/01.webp">
+		<!-- CAROSELLO -->
+		<div class="my-carousel d-flex">
+
+			<!-- MAIN -->
+			<div class="my-carousel-main col-10" id="slides-container">
+
+				<!-- STAMPA SLIDES -->
+				<div class="slide" :class="(index==activeImage) ? 'active' : '' " v-for="(slide,index) of slides">
+					<img :src="slide.image">
 					<div class="slide-text">
-						<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-							laboriosam
-							molestiae.</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-							culpa
-							aspernatur.</p>
+						<h2 v-text="slide.title"></h2>
+						<p v-text="slide.text"></p>
 					</div>
 				</div>
-
-				<div class="slide">
-					<img src="./img/02.webp">
-					div.te
-					<div class="slide-text">
-						<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-							laboriosam
-							molestiae.</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-							culpa
-							aspernatur.</p>
-					</div>
-				</div>
-
-				<div class="slide">
-					<img src="./img/03.webp">
-					<div class="slide-text">
-						<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-							laboriosam
-							molestiae.</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-							culpa
-							aspernatur.</p>
-					</div>
-				</div>
-
-				<div class="slide">
-					<img src="./img/04.webp">
-					<div class="slide-text">
-						<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-							laboriosam
-							molestiae.</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-							culpa
-							aspernatur.</p>
-					</div>
-				</div>
-
-				<div class="slide">
-					<img src="./img/05.webp">
-					<div class="slide-text">
-						<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-							laboriosam
-							molestiae.</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-							culpa
-							aspernatur.</p>
-					</div>
-				</div> -->
 			</div>
 
-			<div class="my-carousel-thumbs" id="thumbs-container">
-				<!-- <div class="col thumb">
-					<img src="./img/01.webp">
+
+			<!-- THUMB -->
+			<div class="thumbs-container col-2">
+				<div class="my-carousel-thumbs" id="thumbs-container" v-for="(slide,index) of slides">
+					<div class="col thumb" :class="index==activeImage ? 'active' : ''">
+						<img :src="slide.image" class="img">
+					</div>
 				</div>
-				<div class="col thumb">
-					<img src="./img/02.webp">
-				</div>
-				<div class="col thumb">
-					<img src="./img/03.webp">
-				</div>
-				<div class="col thumb">
-					<img src="./img/04.webp">
-				</div>
-				<div class="col thumb">
-					<img src="./img/05.webp">
-				</div> -->
 			</div>
+
 		</div>
 
+
+		<!-- CONTROLLI -->
 		<div class="my-carousel-controls">
 
-			<button class="btn btn-outline-dark" id="prev">
+			<button class="btn btn-outline-dark" id="prev" v-on:click="backSlide()">
 				<i class="fa-solid fa-chevron-left"></i>
 			</button>
 
@@ -131,7 +82,7 @@
 				<i class="fa-solid fa-stop"></i>
 			</button>
 
-			<button class="btn btn-outline-dark" id="next">
+			<button class="btn btn-outline-dark" id="next" @click="nextSlide()">
 				<i class="fa-solid fa-chevron-right"></i>
 			</button>
 		</div>
